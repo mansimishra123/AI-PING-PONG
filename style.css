@@ -21,3 +21,28 @@ background-size: cover;
     float: right;
     border: 1px solid white;
 }
+
+.instruction_image{
+
+    display: inline-block;
+    width: 45%;
+}
+
+.modal-dialog{
+
+    width: 90%;
+}
+
+.copy_right_footer{
+
+    position: fixed;
+    background-color: gray;
+    line-height: 3;
+    width: 100%;
+    bottom: 0px;
+    color: #000;
+    text-align: center;
+}
+
+
+
