@@ -20,7 +20,11 @@ var ball = {
     dx:3,
     dy:3
 }
+rightwristx=0
+rightwristy=0
+scorerightwrist=0
 
+game_status=""
 function setup(){
   var canvas =  createCanvas(700,600);
 canvas.parent('canvas')
@@ -38,10 +42,25 @@ function modelloaded(){
 }
 
 
+function gotposes(results){
+  if(results.length>0){
+    rightwristx=results[0].pose.rightWrist.x
+    rightwristy=results[0].pose.rightWrist.y
+    console.log(" rightwristx="+rightwristx+"rightwristy="+rightwristy)
+    scorerightwrist=results[0].pose.keypoints[10].score
+  }
+
+}
+function start_game(){
+  game_status="start"
+  document.getElementById("status").innerHTML="Game is loaded"
+}
 function draw(){
 
+  if(game_status="start"){
+  
  background(0); 
-
+image(video,0,0,700,600)
  fill("black");
  stroke("black");
  rect(680,0,20,700);
@@ -50,6 +69,12 @@ function draw(){
  stroke("black");
  rect(0,0,20,700);
  
+ if(scorerightwrist>0.2){
+  fill("red")
+  stroke("red")
+  circle(rightwristx,rightwristy,20)
+
+ }
    //funtion paddleInCanvas call 
    paddleInCanvas();
  
@@ -77,6 +102,9 @@ function draw(){
    
    //function move call which in very important
     move();
+}
+
+  
 }
 
 
